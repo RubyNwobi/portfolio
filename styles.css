@@ -193,19 +193,19 @@ img {
     transition: var(--transition);
 }
 
-/* Hero Section */
 /* ===================== */
 /* HERO SECTION - UPDATED */
 /* ===================== */
 .hero {
-    height: 100vh;
-    min-height: 700px;
+    height: auto; /* Changed from 100vh to auto */
+    min-height: 100vh; /* Fallback for mobile */
     position: relative;
     background: url('Background.png') no-repeat center center/cover;
     display: flex;
     align-items: center;
     color: var(--secondary-color);
     overflow: hidden;
+    padding: 80px 0 40px; /* Added padding */
 }
 
 .hero-overlay {
@@ -222,7 +222,7 @@ img {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 1.5rem; /* Reduced padding on mobile */
     position: relative;
     z-index: 2;
 }
@@ -243,39 +243,128 @@ img {
     z-index: 4;
 }
 
-.hero-image {
-    display: flex;
-    justify-content: flex-end;
-    position: relative;
-    z-index: 3;
+/* Hero Image - Circular with no border, positioned far right */
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1fr auto; /* Text takes space, image auto width */
+    align-items: center;
+    gap: 2rem;
 }
 
-.image-frame {
-    position: relative;
-    width: 100%;
-    max-width: 450px;
+.hero-image {
+    margin-left: auto; /* Pushes image to far right */
+    padding-right: 0;
 }
 
 .profile-img {
-    width: 100%;
-    height: auto;
-    max-height: 600px;
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
     object-fit: cover;
-    border-radius: 10px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    border: none; /* Removes any border */
+    box-shadow: none; /* Removes shadow if you want it completely clean */
     position: relative;
-    z-index: 2;
+    margin-right: -50px; /* Extends slightly beyond container */
 }
 
+/* Remove all frame decorations */
 .frame-decoration {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border: 3px solid rgba(255,255,255,0.2);
-    border-radius: 10px;
-    top: 25px;
-    left: 25px;
-    z-index: 1;
+    display: none;
+}
+
+/* Update mobile breakpoint */
+@media (max-width: 768px) {
+    .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2rem;
+        padding-top: 60px; /* Added space for fixed header */
+    }
+    
+    .hero-text {
+        padding-top: 40px; /* Extra space on top */
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+        line-height: 1.3;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .profile-img {
+        width: 220px;
+        height: 220px;
+        margin: 0 auto;
+    }
+}
+
+/* Add to your CSS */
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 1.8rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.85rem;
+    }
+    
+    /* Prevent text overflow */
+    .hero-text, .about-text, .section-header {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+}
+
+/* Mobile adjustments for the hero image */
+@media (max-width: 768px) {
+  .hero-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2rem;
+    padding-top: 20px;
+  }
+
+  .hero-image {
+    margin: 0 auto; /* Center the image container */
+    margin-top: -20px;
+    padding: 0;
+    order: 2; /* Makes image appear after text on mobile */
+  }
+
+  .profile-img {
+    width: 220px;
+    height: 220px;
+    margin: 0 auto; /* Center the actual image */
+    max-width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+  }
+
+  .hero-text {
+    order: 1; /* Makes text appear first on mobile */
+    padding: 0 1rem; /* Add some side padding */
+    max-width: 100%;
+  }
+}
+
+/* For very small devices */
+@media (max-width: 480px) {
+  .profile-img {
+    width: 180px;
+    height: 180px;
+  }
 }
 
 /* Typography */
@@ -418,7 +507,7 @@ img {
 }
 
 .hero-title .accent-text {
-    color: var(--accent-color); /* Add your purple */
+    color: var(--secondary-color);
     font-style: italic;
     font-weight: 500;
     font-size: 1.2em;
@@ -470,78 +559,24 @@ img {
 
 
 /* About Section */
-/* Filmstrip Image Container */
 .about-image {
     position: relative;
     max-width: 450px;
-    margin: 2rem auto;
-    padding: 15px;
-    background: #f8f8f8; /* Light gray background for frame visibility */
-    border-radius: 8px;
-    box-shadow: 
-        0 5px 15px rgba(0,0,0,0.1),
-        inset 0 0 0 1px #e0e0e0; /* Inner border */
-}
-
-/* The actual image with built-in sprocket holes */
-.filmstrip-image {
-    display: block;
-    width: 100%;
-    border: 8px solid white; /* White border around image */
-    box-shadow: 
-        0 2px 5px rgba(0,0,0,0.1),
-        0 0 0 1px rgba(0,0,0,0.05); /* Subtle shadow */
-    transform: rotate(-2deg);
-    background: white; /* Ensure no transparency issues */
-    position: relative;
-    z-index: 2;
-}
-
-/* Enhanced film edges */
-.filmstrip-image::before {
-    content: "";
-    position: absolute;
-    top: -12px;
-    left: -12px;
-    right: -12px;
-    bottom: -12px;
-    border: 2px dashed rgba(0,0,0,0.1);
-    border-radius: 5px;
-    z-index: -1;
-}
-
-/* Hover effect */
-.about-image:hover .filmstrip-image {
-    transform: rotate(-1deg) translateY(-3px);
-}
-
-/* Subtle hover animation */
-.about-image:hover .filmstrip-image {
-    transform: rotate(-0.5deg) translateY(-3px);
-}
-
-/* Optional: Add film grain texture */
-.filmstrip-image::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="1" stitchTiles="stitch"/><feColorMatrix type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.08 0"/></filter><rect width="100%" height="100%" filter="url(%23noise)" opacity="0.3"/></svg>');
-    mix-blend-mode: overlay;
-    pointer-events: none;
-    border-radius: 2px;
+    margin: 2rem -50px 2rem auto;
 }
 
 .about-content {
     display: flex;
     align-items: center;
     gap: 3rem;
+    max-width: 1200px; /* Match your container width */
+    margin: 0 auto; /* Center the entire section */
 }
 
 .about-text {
     flex: 1;
+    max-width: 600px; /* Fixed text container width */
+    padding-right: 2rem; /* Breathing room before image */
 }
 
 .about-text .lead {
@@ -550,34 +585,37 @@ img {
     color: var(--dark-grey);
 }
 
-.about-image {
-    flex: 1;
-    position: relative;
-}
-
-.image-frame {
-    position: relative;
-    max-width: 400px;
-    margin: 0 auto;
-}
-
-.profile-img {
-    border-radius: 10px;
-    box-shadow: var(--box-shadow);
-    z-index: 1;
-    position: relative;
-}
-
-.frame-decoration {
-    position: absolute;
+/* New curved image style */
+.about-image img {
     width: 100%;
-    height: 100%;
-    border: 2px solid var(--medium-grey);
-    border-radius: 10px;
-    top: 20px;
-    left: 20px;
-    z-index: 0;
+    display: block;
+    border-radius: 15px; /* Main rounded corners */
+    clip-path: inset(5% round 12px); /* Curved edges effect */
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
 }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .about-content {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .about-text {
+        max-width: 100%;
+        padding-right: 0;
+    }
+    
+    .about-image {
+        max-width: 350px;
+        margin: 1rem auto; /* Center on mobile */
+    }
+    
+    .about-image img {
+        border-radius: 6px;
+    }
+}
+
 
 /* Skills Section */
 .skills {
