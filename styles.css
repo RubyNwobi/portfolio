@@ -197,15 +197,17 @@ img {
 /* HERO SECTION - UPDATED */
 /* ===================== */
 .hero {
-    height: auto; /* Changed from 100vh to auto */
-    min-height: 100vh; /* Fallback for mobile */
+    height: auto;
+    min-height: 100vh;
     position: relative;
     background: url('Background.png') no-repeat center center/cover;
     display: flex;
     align-items: center;
+    justify-content: center; /* Add this to center vertically */
     color: var(--secondary-color);
     overflow: hidden;
-    padding: 80px 0 40px; /* Added padding */
+    padding: 80px 0 40px;
+    text-align: center; /* Center text horizontally */
 }
 
 .hero-overlay {
@@ -220,66 +222,31 @@ img {
 
 .hero .container {
     width: 100%;
-    max-width: 1200px;
+    max-width: 800px; /* Reduce max-width for better readability */
     margin: 0 auto;
-    padding: 0 1.5rem; /* Reduced padding on mobile */
+    padding: 0 1.5rem;
     position: relative;
     z-index: 2;
 }
 
 .hero-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
-    width: 100%;
-    position: relative;
-    z-index: 3;
+    display: block;
 }
 
 .hero-text {
-    max-width: 600px;
+    max-width: 100%;
     position: relative;
     z-index: 4;
+    padding: 0 1rem;
 }
 
 /* Hero Image - Circular with no border, positioned far right */
 .hero-grid {
-    display: grid;
-    grid-template-columns: 1fr auto; /* Text takes space, image auto width */
-    align-items: center;
-    gap: 2rem;
-}
-
-.hero-image {
-    margin-left: auto; /* Pushes image to far right */
-    padding-right: 0;
-}
-
-.profile-img {
-    width: 350px;
-    height: 350px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: none; /* Removes any border */
-    box-shadow: none; /* Removes shadow if you want it completely clean */
-    position: relative;
-    margin-right: -50px; /* Extends slightly beyond container */
-}
-
-/* Remove all frame decorations */
-.frame-decoration {
-    display: none;
+    display: block;
 }
 
 /* Update mobile breakpoint */
 @media (max-width: 768px) {
-    .hero-grid {
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: 2rem;
-        padding-top: 60px; /* Added space for fixed header */
-    }
     
     .hero-text {
         padding-top: 40px; /* Extra space on top */
@@ -292,19 +259,17 @@ img {
     
     .hero-subtitle {
         font-size: 1.1rem;
-        margin-bottom: 1.5rem;
     }
     
-    .profile-img {
-        width: 220px;
-        height: 220px;
-        margin: 0 auto;
+    .hero {
+        padding-top: 100px; /* Extra space for fixed header */
     }
+
 }
 
 /* Add to your CSS */
 @media (max-width: 480px) {
-    .hero-title {
+  .hero-title {
         font-size: 1.8rem;
     }
     
@@ -322,41 +287,6 @@ img {
         word-wrap: break-word;
         overflow-wrap: break-word;
     }
-}
-
-/* Mobile adjustments for the hero image */
-@media (max-width: 768px) {
-  .hero-grid {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 2rem;
-    padding-top: 20px;
-  }
-
-  .hero-image {
-    margin: 0 auto; /* Center the image container */
-    margin-top: -20px;
-    padding: 0;
-    order: 2; /* Makes image appear after text on mobile */
-  }
-
-  .profile-img {
-    width: 220px;
-    height: 220px;
-    margin: 0 auto; /* Center the actual image */
-    max-width: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-    display: block;
-  }
-
-  .hero-text {
-    order: 1; /* Makes text appear first on mobile */
-    padding: 0 1rem; /* Add some side padding */
-    max-width: 100%;
-  }
 }
 
 /* For very small devices */
