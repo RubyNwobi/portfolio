@@ -89,7 +89,7 @@ img {
 .section-divider {
     width: 80px;
     height: 4px;
-    background: var(--gradient-dark);
+    background: var(--accent-color);
     margin: 1rem auto;
     border-radius: 2px;
 }
@@ -731,11 +731,11 @@ img {
 
 /* Color accents */
 .admin-skills {
-  border-top: 4px solid #4e79a7; /* Professional blue */
+  border-top: 4px solid #8A2BE2;
 }
 
 .data-skills {
-  border-top: 4px solid #e15759; /* Analytical red */
+  border-top: 4px solid #8A2BE2;  
 }
 
 /* Responsive */
@@ -846,6 +846,37 @@ img {
     width: 100%;
     height: 100%;
 }
+
+/* Calendly - Blue #006BFF */
+.icon-calendly {
+  filter: invert(26%) sepia(98%) saturate(3722%) hue-rotate(211deg) brightness(99%) contrast(104%);
+}
+
+/* Zapier - Orange #FF4A00 */
+.icon-zapier {
+  filter: invert(44%) sepia(89%) saturate(5697%) hue-rotate(2deg) brightness(102%) contrast(101%);
+}
+
+/* Canva - Teal #00C4CC */
+.icon-canva {
+  filter: invert(59%) sepia(96%) saturate(3996%) hue-rotate(142deg) brightness(91%) contrast(101%);
+}
+
+/* HubSpot - Orange-Red #FF7A59 */
+.icon-hubspot {
+  filter: invert(61%) sepia(48%) saturate(5933%) hue-rotate(333deg) brightness(102%) contrast(101%);
+}
+
+/* Otter.ai - Black #1B1B1B (almost default black, no filter needed) */
+.icon-otter {
+  filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(100%);
+}
+
+/* Airtable - Blue #18BFFF */
+.icon-airtable {
+  filter: invert(62%) sepia(89%) saturate(4232%) hue-rotate(174deg) brightness(100%) contrast(101%);
+}
+
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
